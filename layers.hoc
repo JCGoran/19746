@@ -4,11 +4,14 @@
    BPG 24-10-97
 */
 
-objectvar allsec, layer_SO, layer_SR, layer_SLM
-
+objectvar layer_SO, layer_SR, layer_SLM
+// allsec removed from above objectvar declaration
 // All sections (including soma)
-allsec = new SectionList()
-forall allsec.append()
+// allsec = new SectionList()
+// forall allsec.append()
+// above two lines commented out and removal of allsec from objectvar
+// by ModelDB admin to remove references to allsec which is defined in
+// NEURON with python.
 
 // Sections in stratum oriens (basal dendrites)
 layer_SO = new SectionList()
