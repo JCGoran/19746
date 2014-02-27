@@ -1,0 +1,16 @@
+/* cell_pass.hoc
+   Construct and simulate Major's CA1 pyramidal cell.
+   Only passive properties set here.
+   BPG 6-4-98
+*/
+
+xopen("CA1_Major.nrn")
+
+segcnt = 0
+
+forall { insert pas g_pas=1/Rm e_pas=E_pas cm=Cm Ra=Ri }
+forall { segcnt = segcnt + nseg}
+print "Number of segments = ", segcnt
+access soma
+
+finitialize(E_pas)  /* v=-65 for all segs., also does t=0 */

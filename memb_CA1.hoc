@@ -1,0 +1,93 @@
+/* memb_CA1.hoc
+   Procedures for setting active membrane properties in different layers
+   of a CA1 cell.
+   Version for Network paper (BPG 26-11-02)
+*/
+
+proc insert_Na() {
+// Lipowsky et al's INaP
+//soma {insert CA1NaP ena_CA1NaP=65 gnaP_CA1NaP=gbarINaP vhalf_CA1NaP=INaP_half}
+apical[1] {insert CA1NaP ena_CA1NaP=65 gnaP_CA1NaP=gbarINaP vhalf_CA1NaP=INaP_half}
+forsec layer_SR {insert CA1NaP ena_CA1NaP=65 gnaP_CA1NaP=gbarINaP vhalf_CA1NaP=INaP_half}
+usetable_CA1NaP=0
+}
+
+
+proc insert_KA() {
+  apical[1] {insert M99Ka gkbar_M99Ka=global_gka thmin_M99Ka=thminKA}
+  access soma
+  distance()    // initialize origin to '0' end of soma
+  forsec layer_SR {
+    insert M99Ka gkbar_M99Ka=global_gka thmin_M99Ka=thminKA
+    // adjust K-A for distal kinetics (proximal are default)
+    if (distance(1)-soma.L > 100) {  // distal dendrites (> 100um)
+      x100 = (100-distance(0)+soma.L)/L
+      if (x100 < 0) {x100 = 0}
+      tmfac_M99Ka(x100:1)=2:2
+      afac_M99Ka(x100:1)=1.8:1.8
+      bfac_M99Ka(x100:1)=0.7:0.7
+    }
+  }   
+}
+
+
+proc insert_H() {
+  apical[1] {insert L98NCh ghbar_L98NCh=global_gh t0l_L98NCh=tcH}
+  forsec layer_SR {insert L98NCh ghbar_L98NCh=global_gh t0l_L98NCh=tcH}
+}
+
+
+proc insert_Ca() {
+// Warman et al's ICaG
+apical[1] {insert CA1CaG gcabar_CA1CaG=gbarICaG tc_CA1CaG=tcCaG}
+forsec layer_SR {insert CA1CaG gcabar_CA1CaG=gbarICaG tc_CA1CaG=tcCaG}
+}
+
+
+proc adjust_apical() {
+  apical[1] {
+    gnaP_CA1NaP=gbarINaP 
+    vhalf_CA1NaP=INaP_half
+    gcabar_CA1CaG=gbarICaG 
+    tc_CA1CaG=tcCaG
+    gkbar_M99Ka(0:1)=global_gka*(1+(distance(0)-soma.L)/dfacA):global_gka*(1+(distance(1)-soma.L)/dfacA)
+    thmin_M99Ka = thminKA
+    ghbar_L98NCh(0:1)=global_gh*(1+(distance(0)-soma.L)/dfacH):global_gh*(1+(distance(1)-soma.L)/dfacH)
+    t0l_L98NCh=tcH
+  }  
+  access soma
+  distance()    // initialize origin to '0' end of soma
+  forsec layer_SR {
+    gnaP_CA1NaP=gbarINaP 
+    vhalf_CA1NaP=INaP_half
+    gcabar_CA1CaG=gbarICaG 
+    tc_CA1CaG=tcCaG
+    gkbar_M99Ka(0:1)=global_gka*(1+(distance(0)-soma.L)/dfacA):global_gka*(1+(distance(1)-soma.L)/dfacA)
+    thmin_M99Ka = thminKA
+    ghbar_L98NCh(0:1)=global_gh*(1+(distance(0)-soma.L)/dfacH):global_gh*(1+(distance(1)-soma.L)/dfacH)
+    t0l_L98NCh=tcH
+  }
+}
+
+
+// A useful menu
+proc xmenumem() {
+    xpanel("Active Channels")
+    xlabel("Sodium Channels")
+    xvalue("Na(P) gbar","gbarINaP",1)
+    xvalue("Na(P) Vhalf","INaP_half",1)
+    xlabel("Potassium Channels")
+    xvalue("K(A) gbar","global_gka",1)
+    xvalue("K(A) dist. fact.","dfacA",1)
+    xvalue("K(A) tau(inact)","thminKA",1)
+    xlabel("Nonspecific Cation Channels")
+    xvalue("NC(H) gbar","global_gh",1)
+    xvalue("NC(H) dist. fact.","dfacH",1)
+    xvalue("NC(H) tau(act)","tcH",1)
+    xlabel("Calcium Channels")
+    xvalue("Ca(G) gbar","gbarICaG",1)
+    xvalue("Ca(G) tau(inact)","tcCaG",1)
+    xlabel("Control")
+    xbutton("Update","adjust_apical()")
+    xpanel()
+}

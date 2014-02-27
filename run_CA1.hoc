@@ -1,0 +1,44 @@
+/* run_CA1.hoc
+   Construct and simulate Major's CA1 pyramidal cell.
+   A fixed number of synapses are added to stratum radiatum.
+   Version for Network paper (BPG 26-11-02)
+*/
+
+xopen("$(NEURONHOME)/lib/hoc/noload.hoc")
+//load_proc("nrnmainmenu")
+
+xopen("globals.hoc")
+xopen("cell_pass.hoc")
+xopen("layers.hoc")
+xopen("synapse.hoc")
+xopen("memb_CA1.hoc")
+xopen("xmenusyn.hoc")
+
+
+// Somatic spiking (channels from Bernander et al)
+//soma {insert BKDNaDR gnabar_BKDNaDR=0.1 gkbar_BKDNaDR=0.06}
+
+// Lipowsky et al's INaP
+insert_Na()
+
+// Warman et al's ICaG
+insert_Ca()
+
+// Migliore et al's IKA
+insert_KA()
+
+// Borg-Graham's IH
+insert_H()
+
+adjust_apical()
+// balance IH at rest of -65mV
+forall {if (ismembrane("pas")) {e_pas=-70}}  
+
+// creates n dual exponential synapses that produce a single EPSC
+// creatensynDE(SectionList object, no. of synapses, random seed)
+creatensynDE(layer_SR, nsyn, my_seed)
+
+nrnmainmenu()
+//xmenumem()
+//xmenusyn()
+xopen("fixed_syn.ses")

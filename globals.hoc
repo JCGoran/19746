@@ -1,0 +1,50 @@
+/* Global constants for CA1 neuron simulations
+   Version for Network paper (BPG 26-11-02)
+*/
+
+// Run control
+my_print = 0
+my_seed = 16
+nsyn = 200  // number of synapses
+
+// Passive properties
+celsius = 35
+Rm = 30000 /* Ohm cm^2 */
+Cm = 1.0 /* uF cm^-2 */
+Ri = 200 /* Ohm cm */
+E_pas = -65 /* mV */
+
+// Spines
+spine_flag = 0
+sneck_diam = 0.1 /* um */
+sneck_len = 0.5 /* um */
+shead_diam = 0.25 /* um */
+shead_len = 0.5 /* um */
+
+// Synapse
+syn_gmax = 0.006 /* mS - reference value for AMPA-only synapse*/
+DE_gmax = 0.0007 /* mS */
+NMDA_frac = 0.05 /* fraction of max g is NMDA */
+DE_tau1 = 0.2 /* msec */
+DE_tau2 = 2.0 /* msec */
+NMDA_tau1 = 0.66 /* msec */
+NMDA_tau2 = 80.0 /* msec */
+DE_Erev = 0 /* mV */
+DE_onset = 0 /* msec */
+jitter_time = 0 /* msec */
+quantal_cv = 0 /* quantal noise CV */
+// synaptic conductance scaling
+gsc_flag = 1
+gsc_slope = 0.02088
+
+// Active properties
+gbarINaP = 0.000005
+INaP_half = -49
+global_gka = 0.0002
+dfacA = 100
+thminKA = 2
+global_gh = 0.00003
+dfacH = 80
+tcH = 50
+gbarICaG = 0.0005
+tcCaG = 1

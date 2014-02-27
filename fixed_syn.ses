@@ -1,0 +1,88 @@
+objectvar save_window_, rvp_
+objectvar scene_vector_[3]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{
+xpanel("Active Channels", 0)
+xlabel("Sodium Channels")
+gbarINaP = 5e-06
+xvalue("Na(P) gbar","gbarINaP", 1,"", 0, 0 )
+INaP_half = -49
+xvalue("Na(P) Vhalf","INaP_half", 1,"", 0, 0 )
+xlabel("Potassium Channels")
+global_gka = 0.0002
+xvalue("K(A) gbar","global_gka", 1,"", 0, 0 )
+dfacA = 100
+xvalue("K(A) dist. fact.","dfacA", 1,"", 0, 0 )
+thminKA = 2
+xvalue("K(A) tau(inact)","thminKA", 1,"", 0, 0 )
+xlabel("Nonspecific Cation Channels")
+global_gh = 3e-05
+xvalue("NC(H) gbar","global_gh", 1,"", 0, 0 )
+dfacH = 80
+xvalue("NC(H) dist. fact.","dfacH", 1,"", 0, 0 )
+tcH = 50
+xvalue("NC(H) tau(act)","tcH", 1,"", 0, 0 )
+xlabel("Calcium Channels")
+gbarICaG = 0.0005
+xvalue("Ca(G) gbar","gbarICaG", 1,"", 0, 0 )
+tcCaG = 1
+xvalue("Ca(G) tau(inact)","tcCaG", 1,"", 0, 0 )
+xlabel("Control")
+xbutton("Update","adjust_apical()")
+xpanel(339,259)
+}
+{
+xpanel("Excitatory Synapses", 0)
+nsyn = 200
+xvalue("Number of synapses","nsyn", 1,"", 0, 0 )
+DE_gmax = 0.0007
+xvalue("Synaptic conductance (nS)","DE_gmax", 1,"", 0, 0 )
+NMDA_frac = 0.05
+xvalue("NMDA fraction","NMDA_frac", 1,"", 0, 0 )
+jitter_time = 0
+xvalue("Temporal jitter (msec)","jitter_time", 1,"", 0, 0 )
+quantal_cv = 0
+xvalue("Quantal variance (CV)","quantal_cv", 1,"", 0, 0 )
+gsc_flag = 1
+xvalue("Conductance scaling","gsc_flag", 1,"", 0, 0 )
+my_seed = 10
+xvalue("Random seed","my_seed", 1,"", 0, 0 )
+xbutton("Update synapses","creatensynDE(layer_SR, nsyn, my_seed)")
+xpanel(4,454)
+}
+{
+xpanel("RunControl", 0)
+v_init = -65
+xvalue("Init","v_init", 1,"stdinit()", 1, 1 )
+xbutton("Init & Run","run()")
+xbutton("Stop","stoprun=1")
+runStopAt = 5
+xvalue("Continue til","runStopAt", 1,"{continuerun(runStopAt) stoprun=1}", 1, 1 )
+runStopIn = 1
+xvalue("Continue for","runStopIn", 1,"{continuerun(t + runStopIn) stoprun=1}", 1, 1 )
+xbutton("Single Step","steprun()")
+t = 100
+xvalue("t","t", 2 )
+tstop = 100
+xvalue("Tstop","tstop", 1,"tstop_changed()", 0, 1 )
+dt = 0.025
+xvalue("dt","dt", 1,"setdt()", 0, 1 )
+steps_per_ms = 40
+xvalue("Points plotted/ms","steps_per_ms", 1,"setdt()", 0, 1 )
+xcheckbox("Quiet",&stdrun_quiet,"")
+realtime = 15
+xvalue("Real Time","realtime", 0,"", 0, 1 )
+xpanel(4,103)
+}
+{
+save_window_ = new Graph(0)
+save_window_.size(0,100,-65,-7)
+scene_vector_[2] = save_window_
+{save_window_.view(0, -65, 100, 58, 326, 20, 300.48, 201.28)}
+graphList[0].append(save_window_)
+save_window_.save_name("graphList[0].")
+save_window_.addexpr("v(.5)", 1, 1, 0.8, 0.9, 2)
+}
+objectvar scene_vector_[1]
+{doNotify()}

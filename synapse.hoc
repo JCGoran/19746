@@ -1,0 +1,277 @@
+/* synapse.hoc
+   Procedures for setting up synaptic inputs.
+   BPG 8-4-98
+   AMPA/NMDA synapse added (BPG 1-12-00)
+
+   RandomLocation - relocates a synapse to a random location (object)
+   fillsyn - generates random spike train for a synapse
+   createsynDE - creates a single dual exponential synapse
+   createsynDEpos - creates a single synapse at specific location
+   creatensynDE - creates a given number of dual exponential synapses
+   creatensynK100 - creates a given number of spike train alpha synapses
+
+   Scaling for peak V added (gsc_flag=4) (BPG 12-1-00)
+*/
+
+
+objectvar random, ran, jtran, qcvran
+random = new Random()
+ran = new Random()
+jtran = new Random()
+qcvran = new Random()
+
+objectvar syn[1], shr, snr
+objectvar randomize_location
+create shead[1], sneck[1]
+
+
+
+/*
+?2 RandomLocation
+
+rl = new RandomLocation(SectionList)
+rl.loc(PointProcess)
+
+relocates the PointProcess to a random location with respect to
+uniform distribution based on position.
+SectionList defines the set of sections to sample.
+*/
+
+begintemplate RandomLocation
+
+public loc
+objectvar seclist, ran
+
+proc init() {
+    seclist = $o1
+    ran = new Random($2)
+    total_length = 0
+    forsec seclist { total_length = total_length + L }
+}
+
+// randomize location of synapse
+// if required put synapse on spine, scale conductance and onset
+proc loc() {local l, done, rpos, secx, dx
+  //randomize_location.loc(synapse, snr, shr, spine_flag, gsc_flag,  gsc_slope, synapse_gmax)
+  rpos = ran.uniform(0, total_length)
+  done = 0
+  l = 0
+  distance()  // assumes soma is currently accessed               
+  forsec seclist {
+    l = l + L
+    if (l > rpos) {
+      secx = (rpos - l + L)/L
+      if ($4 == 0) {
+        $o1.loc(secx)
+      } else {
+        connect $o2.sec(0), secx
+        $o2.sec connect $o3.sec(0), 1
+        $o3.sec $o1.loc(1)
+      }
+      dx = distance(secx)
+      // scale conductance to give constant peak V
+      if ($5 == 1) $o1.gmax = $7 * (1 + $6*dx)
+      rpos = 1e20   // a break would screw up the stack?
+    }
+  }
+}
+
+endtemplate RandomLocation
+
+
+
+/* Create a random spike train of a given mean frequency
+*/
+
+proc fillsyn() { local i, t
+// Onset times for synapse obey Poisson statistics
+// fillsyn(KSyn100 object, number of onsets, mean interval)
+    t = 0
+    for i = 0, $2 - 1 {
+        t = t + random.negexp($3)
+        $o1.onset[i] = t
+    }
+    $o1.onset[$2] = 1e20
+}
+
+
+
+/*
+Routines to create single synapses at particular locations
+*/
+
+proc createsynDE() {
+// creates a dual exponential synapse that produces a single EPSC
+// createsynDE(Section object, location, distance)
+  if (NMDA_frac > 0) {
+    $o1 syn[0] = new ANSynapse($2)
+  } else {
+    $o1 syn[0] = new DESynapse($2)  // AMPA only
+  }
+  syn[0].gmax = DE_gmax
+  // scale conductance to give constant peak V
+  if (gsc_flag == 1) syn[0].gmax = DE_gmax * (1 + gsc_slope*$3)
+  syn[0].tau1 = DE_tau1
+  syn[0].tau2 = DE_tau2
+  if (NMDA_frac > 0) {
+    syn[0].Ntau1 = NMDA_tau1
+    syn[0].Ntau2 = NMDA_tau2
+    syn[0].Nfrac = NMDA_frac
+  }
+  syn[0].e = DE_Erev
+  syn[0].onset = DE_onset
+  
+  // spines?
+  if (spine_flag == 1) {
+    sneck[0].L = sneck_len
+    sneck[0].diam = sneck_diam
+    shead[0].L = shead_len
+    shead[0].diam = shead_diam
+    sneck[0] {insert pas g_pas=1/Rm e_pas=E_pas cm=Cm Ra=Ri}
+    shead[0] {insert pas g_pas=1/Rm e_pas=E_pas cm=Cm Ra=Ri}
+    $o1 connect sneck[0](0), $2
+    connect shead[0](0), sneck[0](1)
+    shead[0] syn[0].loc(1)
+  } 
+}
+
+
+proc createsynDEpos() {local i, l, rpos, secx, dx
+// creates a dual exponential synapse that produces a single EPSC
+// createsynDE(Synapse index, Section list object, length position)
+
+  i = $1  // index of synapse
+  rpos = $3
+  if (NMDA_frac > 0) {
+    syn[i] = new ANSynapse(0.5)
+  } else {
+    syn[i] = new DESynapse(0.5)  // AMPA only
+  }
+  syn[i].tau1 = DE_tau1
+  syn[i].tau2 = DE_tau2
+  if (NMDA_frac > 0) {
+    syn[i].Ntau1 = NMDA_tau1
+    syn[i].Ntau2 = NMDA_tau2
+    syn[i].Nfrac = NMDA_frac
+  }
+  syn[i].e = DE_Erev
+  syn[i].onset = DE_onset
+  if (spine_flag == 1) {
+    sneck[i].L = sneck_len
+    sneck[i].diam = sneck_diam
+    shead[i].L = shead_len
+    shead[i].diam = shead_diam
+    sneck[i] {insert pas g_pas=1/Rm e_pas=E_pas cm=Cm Ra=Ri}
+    shead[i] {insert pas g_pas=1/Rm e_pas=E_pas cm=Cm Ra=Ri}
+  } 
+  // place synapse in desired location
+  l = 0
+  access soma
+  distance()  // assumes soma is currently accessed               
+  forsec $o2 {
+    l = l + L
+    if (l > rpos) {
+      secx = (rpos - l + L)/L
+      if (spine_flag == 0) {
+        syn[i].loc(secx)
+      } else {
+        connect sneck[i](0), secx
+        sneck[i] connect shead[i](0), 1
+        shead[i] syn[i].loc(1)
+      }
+      dx = distance(secx)
+      syn[i].gmax = DE_gmax
+      // scale conductance to give constant peak V
+      if (gsc_flag == 1) syn[i].gmax = DE_gmax * (1 + gsc_slope*dx)
+      rpos = 1e20   // a break would screw up the stack?
+    }
+  }
+  // add temporal jitter
+  if (jitter_time > 0) {
+    syn[i].onset = syn[i].onset + jtran.discunif(0, jitter_time)
+  }
+  // add quantal variance
+  if (quantal_cv > 0) {
+    gmvar = (syn[i].gmax*quantal_cv)*(syn[i].gmax*quantal_cv)
+    syn[i].gmax = syn[i].gmax + qcvran.normal(0, gmvar)
+    if (syn[i].gmax < 0) syn[i].gmax = 0
+  }
+}
+
+
+
+/*
+Routines to create a fixed number of synapses at random locations
+within a part of the dendritic tree (as specified by a section list).
+*/
+
+proc creatensynDE() {local nsyn, gmvar, sumgm
+// creates $2 synapses and randomizes their location
+// creates dual exponential synapses that produce a single EPSC
+// creatensynDE(SectionList object, no. of synapses, location seed (random))
+  nsyn = $2
+  objectvar syn[nsyn]
+  create shead[nsyn], sneck[nsyn]
+  randomize_location = new RandomLocation($o1, $3)
+  for i = 0, nsyn-1 {
+    if (NMDA_frac > 0) {
+      syn[i] = new ANSynapse(0.5)
+    } else {
+      syn[i] = new DESynapse(0.5)  // AMPA only
+    }
+    syn[i].gmax = DE_gmax
+    syn[i].tau1 = DE_tau1
+    syn[i].tau2 = DE_tau2
+    if (NMDA_frac > 0) {
+      syn[i].Ntau1 = NMDA_tau1
+      syn[i].Ntau2 = NMDA_tau2
+      syn[i].Nfrac = NMDA_frac
+    }
+    syn[i].e = DE_Erev
+    syn[i].onset = DE_onset
+    sneck[i].L = sneck_len
+    sneck[i].diam = sneck_diam
+    shead[i].L = shead_len
+    shead[i].diam = shead_diam
+    sneck[i] {insert pas g_pas=1/Rm e_pas=E_pas cm=Cm Ra=Ri}
+    shead[i] {insert pas g_pas=1/Rm e_pas=E_pas cm=Cm Ra=Ri}
+    sneck[i] snr = new SectionRef()
+    shead[i] shr = new SectionRef()
+    // comment this out to have all synapses at soma (BPG 12-1-00)
+    randomize_location.loc(syn[i], snr, shr, spine_flag, gsc_flag, gsc_slope, DE_gmax)
+    // add temporal jitter
+    if (jitter_time > 0) {
+      syn[i].onset = syn[i].onset + jtran.discunif(0, jitter_time)
+    }
+    // add quantal variance
+    if (quantal_cv > 0) {
+      gmvar = (syn[i].gmax*quantal_cv)*(syn[i].gmax*quantal_cv)
+      syn[i].gmax = syn[i].gmax + qcvran.normal(0, gmvar)
+      if (syn[i].gmax < 0) syn[i].gmax = 0
+    }
+  }
+}
+
+
+objref rannoise
+rannoise = new Random()
+
+proc onsetnoise() {
+// adds temporal jitter to EPSC onset for DE synpases
+// onsetnoise(no. of synapses, noise variance, seed)
+    rannoise = new Random($3)
+    for i = 0, $1-1 {
+        syn[i].onset=rannoise.normal(syn[i].onset, $2)
+        if (syn[i].onset < 0) syn[i].onset = 0
+    }   
+}
+
+proc gmaxnoise() {
+// adds temporal jitter to max. conductance for DE synpases
+// gmaxnoise(no. of synapses, noise variance, seed)
+    rannoise = new Random($3)
+    for i = 0, $1-1 {
+        syn[i].gmax=rannoise.normal(syn[i].gmax, $2)
+        if (syn[i].gmax < 0) syn[i].gmax = 0
+    }   
+}

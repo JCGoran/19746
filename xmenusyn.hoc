@@ -1,0 +1,19 @@
+/* xmenusyn.hoc
+   X menu for adding and deleting synapses to dendrites.
+   BPG 9-1-01; modified 5-4-05
+*/
+
+/* Create menu panel */
+proc xmenusyn() {
+    xpanel("Excitatory Synapses")
+    xvalue("Number of synapses","nsyn",1)
+    xvalue("Synaptic conductance (nS)","DE_gmax",1)
+    xvalue("NMDA fraction","NMDA_frac",1)
+    xvalue("Temporal jitter (msec)","jitter_time",1)
+    xvalue("Quantal variance (CV)", "quantal_cv",1)
+    xvalue("Conductance scaling", "gsc_flag",1)
+    xvalue("Random seed", "my_seed",1)
+    xbutton("Update synapses","creatensynDE(layer_SR, nsyn, my_seed)")
+    xpanel()
+}
+    

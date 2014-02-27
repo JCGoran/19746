@@ -1,0 +1,403 @@
+/* h027j.hoc 
+ passive NEURON file prepared with COM2NEURON
+ section indexing convention: 0 of each group is a disconnected dummy,
+ so numbering starts from 1 for each name-group, to keep in line with
+ Clements' convention and to avoid segments called name[0]
+ Major, Evans and Jack, Biophys J. 65:423-449, 1993
+ Edited by BPG 22-10-97
+*/
+
+create soma, basal[56], apical[136]
+
+soma { nseg=1 L=17 diam=17 } /* S cm^-2 */
+basal[0] { nseg=1 L=33 diam=1 } /* disconnected dummy */
+basal[1] { nseg=1 L=8.4 diam=1.4 }  /* sect. 1 */
+basal[2] { nseg=1 L=10.2922 diam=1.03542 }  /* sect. 2 */
+basal[3] { nseg=1 L=16.8351 diam=0.79053 }  /* sect. 3 */
+basal[4] { nseg=3 L=88.6391 diam=0.96278 }  /* sect. 4 */
+basal[5] { nseg=4 L=113.356 diam=0.864042 }  /* sect. 5 */
+basal[6] { nseg=3 L=64.4464 diam=0.777294 }  /* sect. 6 */
+basal[7] { nseg=8 L=226.713 diam=0.864042 }  /* sect. 7 */
+basal[8] { nseg=1 L=26.0178 diam=0.903463 }  /* sect. 8 */
+basal[9] { nseg=5 L=120.837 diam=0.777294 }  /* sect. 9 */
+basal[10] { nseg=6 L=167.158 diam=0.777294 }  /* sect. 10 */
+basal[11] { nseg=3 L=63.9572 diam=0.818314 }  /* sect. 11 */
+basal[12] { nseg=8 L=225.562 diam=0.777294 }  /* sect. 12 */
+basal[13] { nseg=9 L=235.632 diam=0.777294 }  /* sect. 13 */
+basal[14] { nseg=1 L=25.7305 diam=1.24251 }  /* sect. 14 */
+basal[15] { nseg=2 L=43.2453 diam=0.891805 }  /* sect. 15 */
+basal[16] { nseg=10 L=273.897 diam=0.777294 }  /* sect. 16 */
+basal[17] { nseg=11 L=300.079 diam=0.777294 }  /* sect. 17 */
+basal[18] { nseg=2 L=41.1326 diam=0.936747 }  /* sect. 18 */
+basal[19] { nseg=13 L=364.525 diam=0.777294 }  /* sect. 19 */
+basal[20] { nseg=8 L=186.314 diam=0.635867 }  /* sect. 20 */
+basal[21] { nseg=1 L=12 diam=4 }  /* sect. 21 */
+basal[22] { nseg=1 L=13.2 diam=3 }  /* sect. 22 */
+basal[23] { nseg=1 L=28.2227 diam=0.867528 }  /* sect. 23 */
+basal[24] { nseg=13 L=391.262 diam=0.864042 }  /* sect. 24 */
+basal[25] { nseg=7 L=215.743 diam=0.864042 }  /* sect. 25 */
+basal[26] { nseg=5 L=126.15 diam=0.635867 }  /* sect. 26 */
+basal[27] { nseg=5 L=118.823 diam=0.777294 }  /* sect. 27 */
+basal[28] { nseg=4 L=118.186 diam=0.96278 }  /* sect. 28 */
+basal[29] { nseg=3 L=73.1332 diam=0.864042 }  /* sect. 29 */
+basal[30] { nseg=6 L=133.913 diam=0.635867 }  /* sect. 30 */
+basal[31] { nseg=8 L=229.59 diam=0.777294 }  /* sect. 31 */
+basal[32] { nseg=9 L=239.66 diam=0.777294 }  /* sect. 32 */
+basal[33] { nseg=15 L=422.93 diam=0.777294 }  /* sect. 33 */
+basal[34] { nseg=2 L=55.9133 diam=0.88586 }  /* sect. 34 */
+basal[35] { nseg=1 L=13.2911 diam=0.823649 }  /* sect. 35 */
+basal[36] { nseg=4 L=111.528 diam=0.864042 }  /* sect. 36 */
+basal[37] { nseg=5 L=145.004 diam=0.777294 }  /* sect. 37 */
+basal[38] { nseg=7 L=191.325 diam=0.777294 }  /* sect. 38 */
+basal[39] { nseg=9 L=241.674 diam=0.777294 }  /* sect. 39 */
+basal[40] { nseg=10 L=308.988 diam=0.864042 }  /* sect. 40 */
+basal[41] { nseg=1 L=31.5153 diam=1.06858 }  /* sect. 41 */
+basal[42] { nseg=1 L=31.2985 diam=1.02778 }  /* sect. 42 */
+basal[43] { nseg=14 L=404.061 diam=0.864042 }  /* sect. 43 */
+basal[44] { nseg=10 L=285.219 diam=0.864042 }  /* sect. 44 */
+basal[45] { nseg=11 L=329.099 diam=0.864042 }  /* sect. 45 */
+basal[46] { nseg=10 L=307.159 diam=0.864042 }  /* sect. 46 */
+basal[47] { nseg=13 L=376.636 diam=0.864042 }  /* sect. 47 */
+basal[48] { nseg=2 L=56.1566 diam=1.05557 }  /* sect. 48 */
+basal[49] { nseg=2 L=51.1932 diam=0.864042 }  /* sect. 49 */
+basal[50] { nseg=7 L=195.353 diam=0.777294 }  /* sect. 50 */
+basal[51] { nseg=8 L=231.604 diam=0.777294 }  /* sect. 51 */
+basal[52] { nseg=9 L=249.73 diam=0.777294 }  /* sect. 52 */
+basal[53] { nseg=2 L=62.5688 diam=0.96278 }  /* sect. 53 */
+basal[54] { nseg=11 L=302.093 diam=0.777294 }  /* sect. 54 */
+basal[55] { nseg=9 L=251.744 diam=0.777294 }  /* sect. 55 */
+apical[0] { nseg=1 L=33 diam=1 } /* disconnected dummy */
+apical[1] { nseg=2 L=36.6156 diam=0.835129 }  /* sect. 56 */
+apical[2] { nseg=6 L=169.172 diam=0.777294 }  /* sect. 57 */
+apical[3] { nseg=1 L=18.2833 diam=0.864042 }  /* sect. 58 */
+apical[4] { nseg=5 L=122.851 diam=0.777294 }  /* sect. 59 */
+apical[5] { nseg=5 L=142.99 diam=0.777294 }  /* sect. 60 */
+apical[6] { nseg=1 L=21.6 diam=3.8 }  /* sect. 61 */
+apical[7] { nseg=1 L=26.657 diam=1.08128 }  /* sect. 62 */
+apical[8] { nseg=5 L=122.851 diam=0.777294 }  /* sect. 63 */
+apical[9] { nseg=1 L=18.2833 diam=0.864042 }  /* sect. 64 */
+apical[10] { nseg=5 L=136.949 diam=0.777294 }  /* sect. 65 */
+apical[11] { nseg=5 L=124.865 diam=0.777294 }  /* sect. 66 */
+apical[12] { nseg=6 L=173.2 diam=0.777294 }  /* sect. 67 */
+apical[13] { nseg=1 L=34.8 diam=3.8 }  /* sect. 68 */
+apical[14] { nseg=1 L=14.9524 diam=0.823649 }  /* sect. 69 */
+apical[15] { nseg=6 L=149.032 diam=0.777294 }  /* sect. 70 */
+apical[16] { nseg=5 L=128.893 diam=0.777294 }  /* sect. 71 */
+apical[17] { nseg=1 L=9.6 diam=3.8 }  /* sect. 72 */
+apical[18] { nseg=2 L=68.8708 diam=2.48452 }  /* sect. 73 */
+apical[19] { nseg=7 L=199.381 diam=0.777294 }  /* sect. 74 */
+apical[20] { nseg=1 L=20.6763 diam=1.3181 }  /* sect. 75 */
+apical[21] { nseg=7 L=195.353 diam=0.777294 }  /* sect. 76 */
+apical[22] { nseg=2 L=66.1127 diam=1.1736 }  /* sect. 77 */
+apical[23] { nseg=4 L=100.452 diam=0.653523 }  /* sect. 78 */
+apical[24] { nseg=2 L=39.0812 diam=1.07096 }  /* sect. 79 */
+apical[25] { nseg=5 L=128.893 diam=0.777294 }  /* sect. 80 */
+apical[26] { nseg=1 L=22.8315 diam=0.96782 }  /* sect. 81 */
+apical[27] { nseg=8 L=232.198 diam=0.864042 }  /* sect. 82 */
+apical[28] { nseg=8 L=219.4 diam=0.864042 }  /* sect. 83 */
+apical[29] { nseg=1 L=32.8792 diam=2.4012 }  /* sect. 84 */
+apical[30] { nseg=1 L=16.5217 diam=2.46129 }  /* sect. 85 */
+apical[31] { nseg=7 L=195.353 diam=0.777294 }  /* sect. 86 */
+apical[32] { nseg=1 L=22.8505 diam=2.47876 }  /* sect. 87 */
+apical[33] { nseg=1 L=24.1122 diam=2.54627 }  /* sect. 88 */
+apical[34] { nseg=2 L=36.8816 diam=0.96782 }  /* sect. 89 */
+apical[35] { nseg=10 L=281.563 diam=0.864042 }  /* sect. 90 */
+apical[36] { nseg=6 L=165.144 diam=0.777294 }  /* sect. 91 */
+apical[37] { nseg=1 L=8.0374 diam=2.54627 }  /* sect. 92 */
+apical[38] { nseg=1 L=8.20942 diam=2.57338 }  /* sect. 93 */
+apical[39] { nseg=1 L=24.6282 diam=2.57338 }  /* sect. 94 */
+apical[40] { nseg=9 L=237.646 diam=0.777294 }  /* sect. 95 */
+apical[41] { nseg=1 L=43.5742 diam=2.59992 }  /* sect. 96 */
+apical[42] { nseg=8 L=234.026 diam=0.864042 }  /* sect. 97 */
+apical[43] { nseg=2 L=49.2011 diam=0.653523 }  /* sect. 98 */
+apical[44] { nseg=6 L=149.032 diam=0.777294 }  /* sect. 99 */
+apical[45] { nseg=1 L=42.7408 diam=2.62593 }  /* sect. 100 */
+apical[46] { nseg=4 L=106.602 diam=0.653523 }  /* sect. 101 */
+apical[47] { nseg=1 L=20.5871 diam=2.15223 }  /* sect. 102 */
+apical[48] { nseg=1 L=13.6099 diam=1.90507 }  /* sect. 103 */
+apical[49] { nseg=1 L=34.2121 diam=1.63124 }  /* sect. 104 */
+apical[50] { nseg=2 L=73.9441 diam=1.38888 }  /* sect. 105 */
+apical[51] { nseg=3 L=81.5608 diam=1.07096 }  /* sect. 106 */
+apical[52] { nseg=16 L=430.509 diam=0.653523 }  /* sect. 107 */
+apical[53] { nseg=2 L=51.1932 diam=0.864042 }  /* sect. 108 */
+apical[54] { nseg=12 L=289.381 diam=0.597271 }  /* sect. 109 */
+apical[55] { nseg=11 L=260.272 diam=0.597271 }  /* sect. 110 */
+apical[56] { nseg=3 L=66.7803 diam=0.597271 }  /* sect. 111 */
+apical[57] { nseg=5 L=153.712 diam=1.1736 }  /* sect. 112 */
+apical[58] { nseg=8 L=188.355 diam=0.597271 }  /* sect. 113 */
+apical[59] { nseg=10 L=256.847 diam=0.597271 }  /* sect. 114 */
+apical[60] { nseg=2 L=31.0816 diam=0.864042 }  /* sect. 115 */
+apical[61] { nseg=5 L=123.003 diam=0.653523 }  /* sect. 116 */
+apical[62] { nseg=4 L=88.1519 diam=0.653523 }  /* sect. 117 */
+apical[63] { nseg=7 L=197.367 diam=0.777294 }  /* sect. 118 */
+apical[64] { nseg=4 L=94.6557 diam=0.777294 }  /* sect. 119 */
+apical[65] { nseg=5 L=137.125 diam=0.864042 }  /* sect. 120 */
+apical[66] { nseg=7 L=193.339 diam=0.777294 }  /* sect. 121 */
+apical[67] { nseg=4 L=88.1519 diam=0.653523 }  /* sect. 122 */
+apical[68] { nseg=4 L=106.602 diam=0.653523 }  /* sect. 123 */
+apical[69] { nseg=5 L=158.064 diam=0.96782 }  /* sect. 124 */
+apical[70] { nseg=4 L=114.795 diam=0.777294 }  /* sect. 125 */
+apical[71] { nseg=8 L=225.562 diam=0.777294 }  /* sect. 126 */
+apical[72] { nseg=7 L=197.367 diam=0.777294 }  /* sect. 127 */
+apical[73] { nseg=1 L=7.2 diam=2.2 }  /* sect. 128 */
+apical[74] { nseg=1 L=33.2915 diam=2.89233 }  /* sect. 129 */
+apical[75] { nseg=7 L=201.395 diam=0.777294 }  /* sect. 130 */
+apical[76] { nseg=1 L=33.9148 diam=3.17359 }  /* sect. 131 */
+apical[77] { nseg=4 L=86.1019 diam=0.653523 }  /* sect. 132 */
+apical[78] { nseg=1 L=13.974 diam=3.18497 }  /* sect. 133 */
+apical[79] { nseg=1 L=15.5266 diam=3.18497 }  /* sect. 134 */
+apical[80] { nseg=1 L=10.8686 diam=3.18497 }  /* sect. 135 */
+apical[81] { nseg=1 L=36.3444 diam=3.21308 }  /* sect. 136 */
+apical[82] { nseg=1 L=22.1227 diam=3.21308 }  /* sect. 137 */
+apical[83] { nseg=1 L=11.0613 diam=3.21308 }  /* sect. 138 */
+apical[84] { nseg=1 L=6.32076 diam=3.21308 }  /* sect. 139 */
+apical[85] { nseg=7 L=203.409 diam=0.777294 }  /* sect. 140 */
+apical[86] { nseg=1 L=11.0613 diam=3.21308 }  /* sect. 141 */
+apical[87] { nseg=1 L=12.6415 diam=3.21308 }  /* sect. 142 */
+apical[88] { nseg=2 L=54.8499 diam=0.864042 }  /* sect. 143 */
+apical[89] { nseg=7 L=203.409 diam=0.777294 }  /* sect. 144 */
+apical[90] { nseg=5 L=145.004 diam=0.777294 }  /* sect. 145 */
+apical[91] { nseg=11 L=316.19 diam=0.777294 }  /* sect. 146 */
+apical[92] { nseg=1 L=55.3066 diam=3.21308 }  /* sect. 147 */
+apical[93] { nseg=3 L=71.7516 diam=0.653523 }  /* sect. 148 */
+apical[94] { nseg=3 L=127.995 diam=3.21308 }  /* sect. 149 */
+apical[95] { nseg=3 L=78.4319 diam=1.26259 }  /* sect. 150 */
+apical[96] { nseg=3 L=82.8041 diam=1.03785 }  /* sect. 151 */
+apical[97] { nseg=5 L=100.364 diam=0.468374 }  /* sect. 152 */
+apical[98] { nseg=1 L=18.8355 diam=0.597271 }  /* sect. 153 */
+apical[99] { nseg=9 L=190.855 diam=0.468374 }  /* sect. 154 */
+apical[100] { nseg=3 L=64.1668 diam=0.468374 }  /* sect. 155 */
+apical[101] { nseg=4 L=105.376 diam=0.96782 }  /* sect. 156 */
+apical[102] { nseg=12 L=285.957 diam=0.597271 }  /* sect. 157 */
+apical[103] { nseg=13 L=311.641 diam=0.597271 }  /* sect. 158 */
+apical[104] { nseg=3 L=79.3352 diam=1.1736 }  /* sect. 159 */
+apical[105] { nseg=6 L=167.237 diam=0.759393 }  /* sect. 160 */
+apical[106] { nseg=7 L=141.496 diam=0.468374 }  /* sect. 161 */
+apical[107] { nseg=3 L=76.8904 diam=0.759393 }  /* sect. 162 */
+apical[108] { nseg=5 L=131.203 diam=0.653523 }  /* sect. 163 */
+apical[109] { nseg=3 L=82.2748 diam=0.864042 }  /* sect. 164 */
+apical[110] { nseg=3 L=71.7516 diam=0.653523 }  /* sect. 165 */
+apical[111] { nseg=8 L=233.618 diam=0.777294 }  /* sect. 166 */
+apical[112] { nseg=2 L=43.9067 diam=0.96782 }  /* sect. 167 */
+apical[113] { nseg=2 L=54.8499 diam=0.864042 }  /* sect. 168 */
+apical[114] { nseg=1 L=18.1256 diam=0.777294 }  /* sect. 169 */
+apical[115] { nseg=7 L=164.004 diam=0.653523 }  /* sect. 170 */
+apical[116] { nseg=6 L=143.503 diam=0.653523 }  /* sect. 171 */
+apical[117] { nseg=4 L=102.502 diam=0.653523 }  /* sect. 172 */
+apical[118] { nseg=2 L=41.0009 diam=0.653523 }  /* sect. 173 */
+apical[119] { nseg=7 L=199.288 diam=0.864042 }  /* sect. 174 */
+apical[120] { nseg=3 L=91.4164 diam=0.864042 }  /* sect. 175 */
+apical[121] { nseg=7 L=187.297 diam=0.777294 }  /* sect. 176 */
+apical[122] { nseg=5 L=140.977 diam=0.777294 }  /* sect. 177 */
+apical[123] { nseg=4 L=106.602 diam=0.653523 }  /* sect. 178 */
+apical[124] { nseg=5 L=142.99 diam=0.777294 }  /* sect. 179 */
+apical[125] { nseg=1 L=20.1116 diam=0.864042 }  /* sect. 180 */
+apical[126] { nseg=9 L=243.688 diam=0.777294 }  /* sect. 181 */
+apical[127] { nseg=1 L=28.1953 diam=0.777294 }  /* sect. 182 */
+apical[128] { nseg=5 L=110.702 diam=0.653523 }  /* sect. 183 */
+apical[129] { nseg=6 L=155.803 diam=0.653523 }  /* sect. 184 */
+apical[130] { nseg=3 L=71.7516 diam=0.653523 }  /* sect. 185 */
+apical[131] { nseg=2 L=33.3691 diam=0.96782 }  /* sect. 186 */
+apical[132] { nseg=2 L=43.8799 diam=0.864042 }  /* sect. 187 */
+apical[133] { nseg=5 L=136.949 diam=0.777294 }  /* sect. 188 */
+apical[134] { nseg=4 L=100.697 diam=0.777294 }  /* sect. 189 */
+apical[135] { nseg=7 L=195.631 diam=0.864042 }  /* sect. 190 */
+
+soma connect basal[1] (0), 0  /* left of soma */
+basal[1] connect basal[2] (0), 1  /* sect. 1-->2 */
+basal[2] connect basal[3] (0), 1  /* sect. 2-->3 */
+basal[3] connect basal[4] (0), 1  /* sect. 3-->4 */
+basal[4] connect basal[5] (0), 1  /* sect. 4-->5 */
+basal[4] connect basal[6] (0), 1  /* sect. 4-->6 */
+basal[3] connect basal[7] (0), 1  /* sect. 3-->7 */
+basal[2] connect basal[8] (0), 1  /* sect. 2-->8 */
+basal[8] connect basal[9] (0), 1  /* sect. 8-->9 */
+basal[8] connect basal[10] (0), 1  /* sect. 8-->10 */
+basal[1] connect basal[11] (0), 1  /* sect. 1-->11 */
+basal[11] connect basal[12] (0), 1  /* sect. 11-->12 */
+basal[11] connect basal[13] (0), 1  /* sect. 11-->13 */
+soma connect basal[14] (0), 0  /* left of soma */
+basal[14] connect basal[15] (0), 1  /* sect. 14-->15 */
+basal[15] connect basal[16] (0), 1  /* sect. 15-->16 */
+basal[15] connect basal[17] (0), 1  /* sect. 15-->17 */
+basal[14] connect basal[18] (0), 1  /* sect. 14-->18 */
+basal[18] connect basal[19] (0), 1  /* sect. 18-->19 */
+basal[18] connect basal[20] (0), 1  /* sect. 18-->20 */
+soma connect basal[21] (0), 0  /* left of soma */
+basal[21] connect basal[22] (0), 1  /* sect. 21-->22 */
+basal[22] connect basal[23] (0), 1  /* sect. 22-->23 */
+basal[23] connect basal[24] (0), 1  /* sect. 23-->24 */
+basal[23] connect basal[25] (0), 1  /* sect. 23-->25 */
+basal[25] connect basal[26] (0), 1  /* sect. 25-->26 */
+basal[25] connect basal[27] (0), 1  /* sect. 25-->27 */
+basal[22] connect basal[28] (0), 1  /* sect. 22-->28 */
+basal[28] connect basal[29] (0), 1  /* sect. 28-->29 */
+basal[29] connect basal[30] (0), 1  /* sect. 29-->30 */
+basal[29] connect basal[31] (0), 1  /* sect. 29-->31 */
+basal[28] connect basal[32] (0), 1  /* sect. 28-->32 */
+basal[22] connect basal[33] (0), 1  /* sect. 22-->33 */
+basal[21] connect basal[34] (0), 1  /* sect. 21-->34 */
+basal[34] connect basal[35] (0), 1  /* sect. 34-->35 */
+basal[35] connect basal[36] (0), 1  /* sect. 35-->36 */
+basal[36] connect basal[37] (0), 1  /* sect. 36-->37 */
+basal[36] connect basal[38] (0), 1  /* sect. 36-->38 */
+basal[35] connect basal[39] (0), 1  /* sect. 35-->39 */
+basal[34] connect basal[40] (0), 1  /* sect. 34-->40 */
+soma connect basal[41] (0), 0  /* left of soma */
+basal[41] connect basal[42] (0), 1  /* sect. 41-->42 */
+basal[42] connect basal[43] (0), 1  /* sect. 42-->43 */
+basal[42] connect basal[44] (0), 1  /* sect. 42-->44 */
+basal[41] connect basal[45] (0), 1  /* sect. 41-->45 */
+soma connect basal[46] (0), 0  /* left of soma */
+soma connect basal[47] (0), 0  /* left of soma */
+soma connect basal[48] (0), 0  /* left of soma */
+basal[48] connect basal[49] (0), 1  /* sect. 48-->49 */
+basal[49] connect basal[50] (0), 1  /* sect. 49-->50 */
+basal[49] connect basal[51] (0), 1  /* sect. 49-->51 */
+basal[48] connect basal[52] (0), 1  /* sect. 48-->52 */
+basal[48] connect basal[53] (0), 1  /* sect. 48-->53 */
+basal[53] connect basal[54] (0), 1  /* sect. 53-->54 */
+basal[53] connect basal[55] (0), 1  /* sect. 53-->55 */
+soma connect apical[1] (0), 1  /* right of soma */
+apical[1] connect apical[2] (0), 1  /* sect. 56-->57 */
+apical[1] connect apical[3] (0), 1  /* sect. 56-->58 */
+apical[3] connect apical[4] (0), 1  /* sect. 58-->59 */
+apical[3] connect apical[5] (0), 1  /* sect. 58-->60 */
+soma connect apical[6] (0), 1  /* right of soma */
+apical[6] connect apical[7] (0), 1  /* sect. 61-->62 */
+apical[7] connect apical[8] (0), 1  /* sect. 62-->63 */
+apical[7] connect apical[9] (0), 1  /* sect. 62-->64 */
+apical[9] connect apical[10] (0), 1  /* sect. 64-->65 */
+apical[9] connect apical[11] (0), 1  /* sect. 64-->66 */
+apical[6] connect apical[12] (0), 1  /* sect. 61-->67 */
+apical[6] connect apical[13] (0), 1  /* sect. 61-->68 */
+apical[13] connect apical[14] (0), 1  /* sect. 68-->69 */
+apical[14] connect apical[15] (0), 1  /* sect. 69-->70 */
+apical[14] connect apical[16] (0), 1  /* sect. 69-->71 */
+apical[13] connect apical[17] (0), 1  /* sect. 68-->72 */
+apical[17] connect apical[18] (0), 1  /* sect. 72-->73 */
+apical[18] connect apical[19] (0), 1  /* sect. 73-->74 */
+apical[18] connect apical[20] (0), 1  /* sect. 73-->75 */
+apical[20] connect apical[21] (0), 1  /* sect. 75-->76 */
+apical[20] connect apical[22] (0), 1  /* sect. 75-->77 */
+apical[22] connect apical[23] (0), 1  /* sect. 77-->78 */
+apical[22] connect apical[24] (0), 1  /* sect. 77-->79 */
+apical[24] connect apical[25] (0), 1  /* sect. 79-->80 */
+apical[24] connect apical[26] (0), 1  /* sect. 79-->81 */
+apical[26] connect apical[27] (0), 1  /* sect. 81-->82 */
+apical[26] connect apical[28] (0), 1  /* sect. 81-->83 */
+apical[18] connect apical[29] (0), 1  /* sect. 73-->84 */
+apical[29] connect apical[30] (0), 1  /* sect. 84-->85 */
+apical[30] connect apical[31] (0), 1  /* sect. 85-->86 */
+apical[30] connect apical[32] (0), 1  /* sect. 85-->87 */
+apical[32] connect apical[33] (0), 1  /* sect. 87-->88 */
+apical[33] connect apical[34] (0), 1  /* sect. 88-->89 */
+apical[34] connect apical[35] (0), 1  /* sect. 89-->90 */
+apical[34] connect apical[36] (0), 1  /* sect. 89-->91 */
+apical[33] connect apical[37] (0), 1  /* sect. 88-->92 */
+apical[37] connect apical[38] (0), 1  /* sect. 92-->93 */
+apical[38] connect apical[39] (0), 1  /* sect. 93-->94 */
+apical[39] connect apical[40] (0), 1  /* sect. 94-->95 */
+apical[39] connect apical[41] (0), 1  /* sect. 94-->96 */
+apical[41] connect apical[42] (0), 1  /* sect. 96-->97 */
+apical[42] connect apical[43] (0), 1  /* sect. 97-->98 */
+apical[42] connect apical[44] (0), 1  /* sect. 97-->99 */
+apical[41] connect apical[45] (0), 1  /* sect. 96-->100 */
+apical[45] connect apical[46] (0), 1  /* sect. 100-->101 */
+apical[45] connect apical[47] (0), 1  /* sect. 100-->102 */
+apical[47] connect apical[48] (0), 1  /* sect. 102-->103 */
+apical[48] connect apical[49] (0), 1  /* sect. 103-->104 */
+apical[49] connect apical[50] (0), 1  /* sect. 104-->105 */
+apical[50] connect apical[51] (0), 1  /* sect. 105-->106 */
+apical[51] connect apical[52] (0), 1  /* sect. 106-->107 */
+apical[51] connect apical[53] (0), 1  /* sect. 106-->108 */
+apical[53] connect apical[54] (0), 1  /* sect. 108-->109 */
+apical[53] connect apical[55] (0), 1  /* sect. 108-->110 */
+apical[50] connect apical[56] (0), 1  /* sect. 105-->111 */
+apical[49] connect apical[57] (0), 1  /* sect. 104-->112 */
+apical[57] connect apical[58] (0), 1  /* sect. 112-->113 */
+apical[57] connect apical[59] (0), 1  /* sect. 112-->114 */
+apical[48] connect apical[60] (0), 1  /* sect. 103-->115 */
+apical[60] connect apical[61] (0), 1  /* sect. 115-->116 */
+apical[60] connect apical[62] (0), 1  /* sect. 115-->117 */
+apical[47] connect apical[63] (0), 1  /* sect. 102-->118 */
+apical[47] connect apical[64] (0), 1  /* sect. 102-->119 */
+apical[38] connect apical[65] (0), 1  /* sect. 93-->120 */
+apical[65] connect apical[66] (0), 1  /* sect. 120-->121 */
+apical[65] connect apical[67] (0), 1  /* sect. 120-->122 */
+apical[37] connect apical[68] (0), 1  /* sect. 92-->123 */
+apical[32] connect apical[69] (0), 1  /* sect. 87-->124 */
+apical[69] connect apical[70] (0), 1  /* sect. 124-->125 */
+apical[69] connect apical[71] (0), 1  /* sect. 124-->126 */
+apical[29] connect apical[72] (0), 1  /* sect. 84-->127 */
+apical[17] connect apical[73] (0), 1  /* sect. 72-->128 */
+apical[73] connect apical[74] (0), 1  /* sect. 128-->129 */
+apical[74] connect apical[75] (0), 1  /* sect. 129-->130 */
+apical[74] connect apical[76] (0), 1  /* sect. 129-->131 */
+apical[76] connect apical[77] (0), 1  /* sect. 131-->132 */
+apical[76] connect apical[78] (0), 1  /* sect. 131-->133 */
+apical[78] connect apical[79] (0), 1  /* sect. 133-->134 */
+apical[79] connect apical[80] (0), 1  /* sect. 134-->135 */
+apical[80] connect apical[81] (0), 1  /* sect. 135-->136 */
+apical[81] connect apical[82] (0), 1  /* sect. 136-->137 */
+apical[82] connect apical[83] (0), 1  /* sect. 137-->138 */
+apical[83] connect apical[84] (0), 1  /* sect. 138-->139 */
+apical[84] connect apical[85] (0), 1  /* sect. 139-->140 */
+apical[84] connect apical[86] (0), 1  /* sect. 139-->141 */
+apical[86] connect apical[87] (0), 1  /* sect. 141-->142 */
+apical[87] connect apical[88] (0), 1  /* sect. 142-->143 */
+apical[88] connect apical[89] (0), 1  /* sect. 143-->144 */
+apical[88] connect apical[90] (0), 1  /* sect. 143-->145 */
+apical[87] connect apical[91] (0), 1  /* sect. 142-->146 */
+apical[87] connect apical[92] (0), 1  /* sect. 142-->147 */
+apical[92] connect apical[93] (0), 1  /* sect. 147-->148 */
+apical[92] connect apical[94] (0), 1  /* sect. 147-->149 */
+apical[94] connect apical[95] (0), 1  /* sect. 149-->150 */
+apical[95] connect apical[96] (0), 1  /* sect. 150-->151 */
+apical[96] connect apical[97] (0), 1  /* sect. 151-->152 */
+apical[96] connect apical[98] (0), 1  /* sect. 151-->153 */
+apical[98] connect apical[99] (0), 1  /* sect. 153-->154 */
+apical[98] connect apical[100] (0), 1  /* sect. 153-->155 */
+apical[95] connect apical[101] (0), 1  /* sect. 150-->156 */
+apical[101] connect apical[102] (0), 1  /* sect. 156-->157 */
+apical[101] connect apical[103] (0), 1  /* sect. 156-->158 */
+apical[94] connect apical[104] (0), 1  /* sect. 149-->159 */
+apical[104] connect apical[105] (0), 1  /* sect. 159-->160 */
+apical[105] connect apical[106] (0), 1  /* sect. 160-->161 */
+apical[104] connect apical[107] (0), 1  /* sect. 159-->162 */
+apical[86] connect apical[108] (0), 1  /* sect. 141-->163 */
+apical[83] connect apical[109] (0), 1  /* sect. 138-->164 */
+apical[109] connect apical[110] (0), 1  /* sect. 164-->165 */
+apical[109] connect apical[111] (0), 1  /* sect. 164-->166 */
+apical[82] connect apical[112] (0), 1  /* sect. 137-->167 */
+apical[112] connect apical[113] (0), 1  /* sect. 167-->168 */
+apical[113] connect apical[114] (0), 1  /* sect. 168-->169 */
+apical[114] connect apical[115] (0), 1  /* sect. 169-->170 */
+apical[114] connect apical[116] (0), 1  /* sect. 169-->171 */
+apical[113] connect apical[117] (0), 1  /* sect. 168-->172 */
+apical[112] connect apical[118] (0), 1  /* sect. 167-->173 */
+apical[81] connect apical[119] (0), 1  /* sect. 136-->174 */
+apical[80] connect apical[120] (0), 1  /* sect. 135-->175 */
+apical[120] connect apical[121] (0), 1  /* sect. 175-->176 */
+apical[120] connect apical[122] (0), 1  /* sect. 175-->177 */
+apical[79] connect apical[123] (0), 1  /* sect. 134-->178 */
+apical[79] connect apical[124] (0), 1  /* sect. 134-->179 */
+apical[78] connect apical[125] (0), 1  /* sect. 133-->180 */
+apical[125] connect apical[126] (0), 1  /* sect. 180-->181 */
+apical[125] connect apical[127] (0), 1  /* sect. 180-->182 */
+apical[127] connect apical[128] (0), 1  /* sect. 182-->183 */
+apical[127] connect apical[129] (0), 1  /* sect. 182-->184 */
+apical[76] connect apical[130] (0), 1  /* sect. 131-->185 */
+apical[73] connect apical[131] (0), 1  /* sect. 128-->186 */
+apical[131] connect apical[132] (0), 1  /* sect. 186-->187 */
+apical[132] connect apical[133] (0), 1  /* sect. 187-->188 */
+apical[132] connect apical[134] (0), 1  /* sect. 187-->189 */
+apical[131] connect apical[135] (0), 1  /* sect. 186-->190 */
+
+
+
+
+
+
+
+

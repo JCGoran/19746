@@ -1,0 +1,29 @@
+/* Create section lists for dendritic sections
+   in particular CA1 layers.
+   Particular lists for Major's cell.
+   BPG 24-10-97
+*/
+
+objectvar allsec, layer_SO, layer_SR, layer_SLM
+
+// All sections (including soma)
+allsec = new SectionList()
+forall allsec.append()
+
+// Sections in stratum oriens (basal dendrites)
+layer_SO = new SectionList()
+for (i = 1; i <= 55; i = i + 1) basal[i] layer_SO.append()
+
+// Sections in stratum radiatum (proximal apical dendrites)
+// (BPG 26-3-98: excluding apical[1])
+layer_SR = new SectionList()
+for (i = 2; i <= 41; i = i + 1) apical[i] layer_SR.append()
+for (i = 45; i <= 49; i = i + 1) apical[i] layer_SR.append()
+for (i = 60; i <= 94; i = i + 1) apical[i] layer_SR.append()
+for (i = 108; i <= 135; i = i + 1) apical[i] layer_SR.append()
+
+// Sections in stratum lacunosum-moleculare (distal apical dendrites)
+layer_SLM = new SectionList()
+for (i = 42; i <= 44; i = i + 1) apical[i] layer_SLM.append()
+for (i = 50; i <= 59; i = i + 1) apical[i] layer_SLM.append()
+for (i = 95; i <= 107; i = i + 1) apical[i] layer_SLM.append()
