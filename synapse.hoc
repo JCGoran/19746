@@ -16,9 +16,13 @@
 
 objectvar random, ran, jtran, qcvran
 random = new Random()
+random.Random123()
 ran = new Random()
+ran.Random123()
 jtran = new Random()
+jtran.Random123()
 qcvran = new Random()
+qcvran.Random123()
 
 objectvar syn[1], shr, snr
 objectvar randomize_location
@@ -45,6 +49,7 @@ objectvar seclist, ran
 proc init() {
     seclist = $o1
     ran = new Random($2)
+    ran.Random123()
     total_length = 0
     forsec seclist { total_length = total_length + L }
 }
@@ -255,11 +260,13 @@ proc creatensynDE() {local nsyn, gmvar, sumgm
 
 objref rannoise
 rannoise = new Random()
+rannoise.Random123()
 
 proc onsetnoise() {
 // adds temporal jitter to EPSC onset for DE synpases
 // onsetnoise(no. of synapses, noise variance, seed)
     rannoise = new Random($3)
+    rannoise.Random123()
     for i = 0, $1-1 {
         syn[i].onset=rannoise.normal(syn[i].onset, $2)
         if (syn[i].onset < 0) syn[i].onset = 0
@@ -270,6 +277,7 @@ proc gmaxnoise() {
 // adds temporal jitter to max. conductance for DE synpases
 // gmaxnoise(no. of synapses, noise variance, seed)
     rannoise = new Random($3)
+    rannoise.Random123()
     for i = 0, $1-1 {
         syn[i].gmax=rannoise.normal(syn[i].gmax, $2)
         if (syn[i].gmax < 0) syn[i].gmax = 0
