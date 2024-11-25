@@ -35,3 +35,7 @@ CA1 neuron: CA1_Major.nrn (kindly supplied by Guy Major)
 Note: In the "Excitatory Synapses" window, any changes to
 the excitatory synapse parameters (such as their number) are only
 registered after clicking on "Update synapses".
+
+Changelog
+---------
+2024-11: Updated hoc files to use Random123
